@@ -1,0 +1,20 @@
+# Agrega una columna para clasificar registros por decada
+ALTER TABLE `nombres_hist`.`hist_nombres` ADD COLUMN `decada` SMALLINT NULL DEFAULT NULL  AFTER `anio` ;
+
+# Actualiza los registros
+UPDATE hist_nombres 
+SET decada =
+CASE
+	WHEN anio BETWEEN 1922 and 1929 THEN 1920
+	WHEN anio BETWEEN 1930 and 1939 THEN 1930
+	WHEN anio BETWEEN 1940 and 1949 THEN 1940
+	WHEN anio BETWEEN 1950 and 1959 THEN 1950
+	WHEN anio BETWEEN 1960 and 1969 THEN 1960
+	WHEN anio BETWEEN 1970 and 1979 THEN 1970
+	WHEN anio BETWEEN 1980 and 1989 THEN 1980
+	WHEN anio BETWEEN 1990 and 1999 THEN 1990
+	WHEN anio BETWEEN 2000 and 2009 THEN 2000
+	WHEN anio BETWEEN 2010 and 2019 THEN 2010
+	ELSE NULL
+END;
+
